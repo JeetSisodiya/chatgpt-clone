@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGpt clone</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="shortcut icon" href="./static/image/ChatGPT.png" type="image/x-icon">
+    <style>
+        .right2{
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-chatblack-50 scroll-smooth w-full h-full">
+   <div class="flex h-[100vh] text-white">
+        <div class="left bg-[#202123] w-2/12 h-full">
+            <button
+            class="w-[90%] py-2 m-2 px-10 space-x-2 border-white border rounded-md flex mx-4 justify-start items-center hover:opacity-70">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>New Chat</span>
+        </button>
+        <div class="text-xs m-4 mx-8 text-gray-400">Today</div>
+        <div class="chats flex flex-col justify-center items-center space-y-2">
+
+
+            {% for chat in myChats %} 
+            <div class="chat space-x-2 opacity-80 w-[90%] px-5 py-2 rounded-md bg-gray-600 cursor-pointer flex justify-start items-center">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                    stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>{{chat.question}}</span>
+            </div>
+            {% endfor %}
+            
+        </div>
+
+            <div class="bottom pt-80 flex flex-col ">
+                <div class="pro mt-14 flex mb-1 ">
+                    <div class="w-1/10 pr-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5001 3.44338C12.1907 3.26474 11.8095 3.26474 11.5001 3.44338L4.83984 7.28868C4.53044 7.46731 4.33984 7.79744 4.33984 8.1547V15.8453C4.33984 16.2026 4.53044 16.5327 4.83984 16.7113L11.5001 20.5566C11.8095 20.7353 12.1907 20.7353 12.5001 20.5566L19.1604 16.7113C19.4698 16.5327 19.6604 16.2026 19.6604 15.8453V8.1547C19.6604 7.79744 19.4698 7.46731 19.1604 7.28868L12.5001 3.44338ZM10.5001 1.71133C11.4283 1.17543 12.5719 1.17543 13.5001 1.71133L20.1604 5.55663C21.0886 6.09252 21.6604 7.0829 21.6604 8.1547V15.8453C21.6604 16.9171 21.0886 17.9075 20.1604 18.4434L13.5001 22.2887C12.5719 22.8246 11.4283 22.8246 10.5001 22.2887L3.83984 18.4434C2.91164 17.9075 2.33984 16.9171 2.33984 15.8453V8.1547C2.33984 7.0829 2.91164 6.09252 3.83984 5.55663L10.5001 1.71133Z" fill="currentColor">
+                        </path>
+                        <path d="M9.44133 11.4454L9.92944 9.98105C10.0321 9.67299 10.4679 9.67299 10.5706 9.98105L11.0587 11.4454C11.2941 12.1517 11.8483 12.7059 12.5546 12.9413L14.019 13.4294C14.327 13.5321 14.327 13.9679 14.019 14.0706L12.5546 14.5587C11.8483 14.7941 11.2941 15.3483 11.0587 16.0546L10.5706 17.519C10.4679 17.827 10.0321 17.827 9.92944 17.519L9.44133 16.0546C9.2059 15.3483 8.65167 14.7941 7.94537 14.5587L6.48105 14.0706C6.17298 13.9679 6.17298 13.5321 6.48105 13.4294L7.94537 12.9413C8.65167 12.7059 9.2059 12.1517 9.44133 11.4454Z" fill="currentColor">
+                        </path>
+                        <path d="M14.4946 8.05961L14.7996 7.14441C14.8638 6.95187 15.1362 6.95187 15.2004 7.14441L15.5054 8.05961C15.6526 8.50104 15.999 8.84744 16.4404 8.99458L17.3556 9.29965C17.5481 9.36383 17.5481 9.63617 17.3556 9.70035L16.4404 10.0054C15.999 10.1526 15.6526 10.499 15.5054 10.9404L15.2004 11.8556C15.1362 12.0481 14.8638 12.0481 14.7996 11.8556L14.4946 10.9404C14.3474 10.499 14.001 10.1526 13.5596 10.0054L12.6444 9.70035C12.4519 9.63617 12.4519 9.36383 12.6444 9.29965L13.5596 8.99458C14.001 8.84744 14.3474 8.50104 14.4946 8.05961Z" fill="currentColor">
+                        </path>
+                        </svg>
+                    </div>
+                    <span> Upgrade to plus </span>
+                    <span class="rounded-lg text-black ml-11 h-6" style="background-color: rgb(241, 222, 114);"> New</span>
+                </div>
+                <div class="accout flex mt-2 w-full h-1">
+                    <img src="./static/image/acct.png" alt="account image" class="h-5 rounded-full  mr-3 ">
+                     Your Account <span class="ml-20"> &#183;&#183;&#183; </span> 
+                </div>
+            </div>
+        </div>
+        <div class="right1 w-10/12 flex justify-center items-center flex-col">
+            <div class="text-center w-full text-4xl font-bold my-10 pt-14">ChatGPT</div>
+            <div class="itemsrow flex py-4 w-[43vw] justify-around">
+                <div class="example flex flex-col justify-center items-center">
+                    <svg stroke="currentColor" fill="none" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round"
+                    stroke-linejoin="round" class="h-6 w-6" height="1em" width="1em"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <div class="py-4">Examples</div>
+                <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]">"Explain quantum computing in simple terms"</button>
+                <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]">"Gotany creative ideas for a 10 year old’s birthday?" →</button>
+                <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]">"How do I make an HTTP request in Javascript?" →</button>
+            </div> 
+            <div class="cap flex flex-col justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path>
+                        </svg>
+                        <div class="py-4">Capabilities</div>
+                        <button class="bg-gray-600 hover:bg-gray-700 py-4 text-xs px-4 mx-4 my-2 rounded-md w-[13vw]">Remembers what user said earlier in the conversation</button>
+                        <button class="bg-gray-600 hover:bg-gray-700 py-4 text-xs px-4 mx-4 my-2 rounded-md w-[13vw]">Allows user to provide follow-up corrections</button>
+                        <button class="bg-gray-600 hover:bg-gray-700 py-4 text-xs px-4 mx-4 my-2 rounded-md w-[13vw]">Trained to decline inappropriate requests</button>
+                    </div>
+                    <div class="limit flex flex-col justify-center items-center">
+                            <svg stroke="currentColor" fill="none" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-6 w-6" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>  
+                    <div class="py-4">Limitations</div>
+                    <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]"> May occasionally generate incorrect information</button>
+                    <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]">May occasionally produce harmful instructions or biased content</button>
+                    <button class="bg-gray-600 hover:bg-gray-700 text-xs py-4 px-4 mx-4 my-2 rounded-md w-[13vw]">Limited knowledge of world and events after 2021</button>
+                </div>
+            </div>
+            <div class="input w-full text-center my-24">
+                <input class="w-[50%] p-4 bg-gray-700 rounded-md ml-20" placeholder="Send a Message" type="text" name="text" id="questionInput">
+                <button class="relative -left-20 pl-10" id="sendButton">
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                </button>
+                <div class="text-xs py-2 pr-14 ml-20 opacity-75">Free Research Preview. ChatGPT may produce inaccurate information about people, places, or facts.<a class="underline"
+                    href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes"> ChatGPT Mar 23
+                    Version</a></div>
+            </div>
+        </div>
+        <div class="right2 w-full flex justify-center items-center text-center h-fit flex-col">
+            <div class="box1 flex mx-auto justify-start py-7 w-[40vw] items-start text-center space-x-6">
+                <img class="w-9 h-9 rounded-lg" src="/static/image/acct.png" alt="account">
+                <div id="question2">what is 4,52,324 + 6,34,343</div>
+            </div>
+            <div class="box2 bg-gray-600 flex justify-center py-7 w-full items-center space-x-6">
+                <div class="box w-[40vw] flex justify-start space-x-6">
+                    <img class="w-9 h-9 roeun" src="/static/image/ChatGPT.png" alt="account">
+                    <div class="flex space-y-4 flex-col text-start">
+                        <div id="question1">Loading...</div>
+                        <div id="solution">Loading...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="input pt-80 w-full text-center my-24">
+                <input class="w-[50%] p-4 bg-gray-700 rounded-md ml-20" placeholder="Send a Message" type="text" name="text" id="">
+                <button class="relative -left-20 pl-10">
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                </button>
+                <div class="text-xs py-2 pr-14 ml-20 opacity-75">Free Research Preview. ChatGPT may produce inaccurate information about people, places, or facts.<a class="underline"
+                    href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes"> ChatGPT Mar 23
+                    Version</a></div>
+            </div>
+        </div>
+   </div>
+   <script src="/static/js/script.js"></script>
+</body>
+</html>
